@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- 이 부분은 주석문입니다. 웹 브라우저는 주석을 화면에 출력하지 않습니다. -->
+<html>
+  <head>
+    <!-- 문서제목, 자바스크립트 코드, CSS 스타일 정의, 메타데이터정의 -->
+    <meta charset="utf-8" />
+    <title>hm13 : Javascript object</title>
+    <style></style>
+    <script>
+      //메소드로 사용할 3 개의 함수 작성
+      function color() {
+        return this.color;
+      }
+
+      function size() {
+        return this.size;
+      }
+
+      function amount() {
+        return this.amount;
+      }
+      function fill() {
+        this.amount += 2;
+      }
+      function consume() {
+        this.amount -= 2;
+      }
+
+      // 사용자 객체 만들기
+      var box = new Object();
+      box.color = "red";
+      // 계좌 주인 프로퍼티 생성 및 초기화
+      box.size = "10";
+      // 코드 프로퍼티 생성 및 초기화
+      box.amount = 0;
+      // 잔액 프로퍼티 생성 및 초기화
+      box.fill = fill;
+      // 메소드 작성
+      box.consume = consume;
+      // 메소드 작성
+    </script>
+  </head>
+
+  <body>
+    <!-- 문서의 본문 텍스트, 이미지, 테이블, 자바스크립트 코드, 동영상 등 -->
+    <h3>new Object()로 사용자 객체 만들기</h3>
+    <hr />
+    <script>
+      // 객체 활용
+      document.write("Box : ");
+      document.write(box.color + ", ");
+      document.write(box.size + ", ");
+      document.write(box.amount + "<br>" + "<hr>");
+      document.write("Box-Color" + box.color + "<br>");
+      document.write("Box-Size" + box.size + "<br>");
+      document.write("Box-Amount" + box.amount + "<br>");
+      box.fill();
+      document.write(
+        "document.write()로 amount 프로퍼티 값 호출 " + box.amount + "<br>"
+      );
+      box.consume();
+      document.write(
+        "document.write()로 amount 프로퍼티 값 호출  " +
+          box.amount +
+          "<br>" +
+          "<hr>"
+      );
+      var user = prompt("깜짝퀴즈!! 박스의 초기 amount값을 예측해 보세요!", 0);
+      if (user == null) {
+        // 취소 버튼이 클릭된 경우
+        document.write("퀴즈맞추기를 끝냅니다.");
+      } else {
+        var ans = box.amount;
+        if (ans == user) {
+          document.write("깜짝퀴즈 결과!!");
+          document.write("정답! ");
+          document.body.style.backgroundColor = "lightskyblue";
+        } else {
+          document.write("깜짝퀴즈 결과!!");
+          document.write("아닙니다! 답은" + ans + "입니다<br>");
+          document.body.style.backgroundColor = "violet";
+        }
+      }
+    </script>
+  </body>
+</html>
