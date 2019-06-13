@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- 이 부분은 주석문입니다. 웹 브라우저는 주석을 화면에 출력하지 않습니다. -->
+<html>
+  <head>
+    <!-- 문서제목, 자바스크립트 코드, CSS 스타일 정의, 메타데이터정의 -->
+    <meta charset="utf-8" />
+    <title>hm13 : image5</title>
+    <style></style>
+    <script>
+      // 미리 로딩해둘 이미지 이름 배열
+      var files = [
+        "media/bas5.png",
+        "media/bas4.png",
+        "media/bas3.jpg",
+        "media/bas2.jpg",
+        "media/bas1.jpg"
+      ];
+      var imgs = new Array();
+      for (var i = 0; i < files.length; i++) {
+        imgs[i] = new Image(); // 메모리에 이미지 객체 생성
+        imgs[i].src = files[i]; // 이미지 로딩
+      }
+
+      // 다음 이미지 출력
+      var next = 1;
+      function change(img) {
+        img.src = imgs[next].src; // 이미지 변경
+        var nameSplit = files[next].split("/");
+        var nameText = document.getElementById("name");
+        var sizeText = document.getElementById("size");
+        nameText.innerHTML = "이미지 이름 : " + nameSplit[1];
+        sizeText.innerHTML = "폭 : " + img.width + "높이 : " + img.height;
+        next++; // 다음 이미지
+        next %= imgs.length; // 개수를 넘으면 처음으로
+      }
+      function init(img) {
+        var nameSplit = files[next - 1].split("/");
+        var nameText = document.getElementById("name");
+        var sizeText = document.getElementById("size");
+        img.src = files[next - 1];
+        nameText.innerHTML = "이미지 이름 : " + nameSplit[1];
+        sizeText.innerHTML = "폭 : " + img.width + "높이 : " + img.height;
+      }
+    </script>
+  </head>
+
+  <body>
+    <h3>농구 동호회 회원 모집!!</h3>
+    <hr />
+    <form>
+      <input
+        type="color"
+        value="#00FF00"
+        onchange="document.body.style.color=this.value"
+      />
+      <fieldset>
+        <legend>회원정보를 입력하세요</legend>
+        이메일 : <input type="email" placeholder="id@host" /><br />
+        홈페이지 : <input type="url" placeholder="http://" /><br />
+        전화번호 : <input type="tel" placeholder="010-xxxx-xxxx" />
+      </fieldset>
+      <small>질문 : Tel. 010-4925-4545</small>
+      <pre> 
+              방문시간
+              month : <input type="month" value="2016-09"><br>
+              week : <input type="week" value="2016-W36"><br> 
+              data : <input type="date" value="2016-09-01"><br> 
+              time : <input type="time" value="21:30"><br> 
+              local: <input type="datetime-local" value="2016-09-01T21:30:10.32"><br> 
+              </pre>
+      <p>
+        <img
+          style="border:20px ridge wheat"
+          src="media/bas5.png"
+          alt="."
+          onclick="change(this)"
+        /><br />
+      </p>
+
+      <p id="name"></p>
+      <p id="size"></p>
+    </form>
+  </body>
+</html>
